@@ -61,7 +61,7 @@ export default function Contact() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: '73058a59-660d-4e41-ac7d-df1f06bbd6da',
+          access_key: 'cee34db0-8355-42e7-a1e3-510c0979b508',
           
           // Form data
           name: formData.name,
@@ -155,7 +155,7 @@ export default function Contact() {
         </svg>
       ),
       title: "Email Us",
-      items: ["info@perfectlogistics.in", "senthil@perfectlogistics.in"],
+      items: ["info@perfectlogistics.org", "senthil@perfectlogistics.in"],
       color: "green",
       bgColor: "bg-green-500"
     },
