@@ -269,6 +269,7 @@ const scrollToSection = (id: string) => {
                 variants={fadeInUpVariants}
               >
                 <motion.button 
+                suppressHydrationWarning
                onClick={() => scrollToSection('contact')}
                 className="group relative px-7 py-3.5 bg-blue-500 text-white font-semibold rounded-lg overflow-hidden shadow-lg"
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)" }}
@@ -297,6 +298,7 @@ const scrollToSection = (id: string) => {
                 </motion.button>
                 
                 <motion.button 
+                suppressHydrationWarning
                  onClick={() => scrollToSection('services')}
                   className="px-7 py-3.5 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border border-white/30 shadow-lg"
                   whileHover={{ 

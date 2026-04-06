@@ -260,6 +260,7 @@ export default function AboutUs() {
           >
             <div className="inline-flex bg-white p-1 rounded-lg shadow-sm border border-gray-200">
               <button
+              suppressHydrationWarning
                 onClick={() => setActiveTab('company')}
                 className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === 'company'
@@ -270,6 +271,7 @@ export default function AboutUs() {
                 Company Profile
               </button>
               <button
+                suppressHydrationWarning
                 onClick={() => setActiveTab('subsidiaries')}
                 className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === 'subsidiaries'
@@ -280,6 +282,7 @@ export default function AboutUs() {
                 Our Group
               </button>
               <button
+                suppressHydrationWarning
                 onClick={() => setActiveTab('whyus')}
                 className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === 'whyus'

@@ -227,6 +227,7 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
               >
                 <motion.button 
+                  suppressHydrationWarning
   onClick={() => {
     const contactSection = document.getElementById('contact');
     contactSection?.scrollIntoView({ behavior: 'smooth' });
@@ -251,6 +252,7 @@ export default function Navbar() {
 
               {/* Mobile Menu Button */}
               <motion.button
+                suppressHydrationWarning
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`lg:hidden p-2 rounded-lg transition-all duration-200 ${
                   isScrolled 
@@ -333,6 +335,7 @@ export default function Navbar() {
               </div>
             </div>
             <motion.button
+              suppressHydrationWarning
               onClick={() => setIsMobileMenuOpen(false)}
               className={`p-2 rounded-lg ${
                 isScrolled 
@@ -412,6 +415,7 @@ export default function Navbar() {
             isScrolled ? 'border-gray-200' : 'border-white/10'
           }`}>
             <motion.button 
+              suppressHydrationWarning
               className={`w-full px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200 ${
                 isScrolled 
                   ? 'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 shadow-md' 

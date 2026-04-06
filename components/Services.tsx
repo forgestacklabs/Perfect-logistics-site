@@ -971,7 +971,7 @@ export default function Services() {
 
                 <div className="p-5">
                   <p className="text-sm text-gray-600 mb-4 line-clamp-3">{service.description}</p>
-                  <button className="text-sm font-semibold flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ color: service.accentColor }}>
+                  <button suppressHydrationWarning className="text-sm font-semibold flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ color: service.accentColor }}>
                     <span>View Details</span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -1054,7 +1054,8 @@ export default function Services() {
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-3">Need a Custom Solution?</h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto text-sm">We look forward to working with you on a long-term basis. Contact us for detailed discussions about your specific requirements.</p>
-          <button
+            <button
+              suppressHydrationWarning
   onClick={() => {
     const el = document.getElementById('contact');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -1098,6 +1099,7 @@ export default function Services() {
 
               {/* Close button */}
               <button
+                suppressHydrationWarning
                 onClick={() => setActiveService(null)}
                 className="absolute top-3 right-3 w-9 h-9 bg-black/30 hover:bg-black/55 rounded-full flex items-center justify-center text-white transition-colors z-10"
               >

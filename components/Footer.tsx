@@ -54,18 +54,6 @@ export default function Footer() {
               Leading Petro logistic solution provider with over 20 years of experience in tank cleaning,
               calibration, and industrial services with higher HSSE standards.
             </p>
-
-            <div className="flex space-x-3">
-              <div className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer transition-all">
-                <span>📧</span>
-              </div>
-              <div className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer transition-all">
-                <span>📞</span>
-              </div>
-              <div className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer transition-all">
-                <span>🌐</span>
-              </div>
-            </div>
           </div>
 
           {/* Quick Links */}

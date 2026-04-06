@@ -413,6 +413,7 @@ export default function Contact() {
                         Full Name *
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="text"
                         name="name"
                         required
@@ -429,6 +430,7 @@ export default function Contact() {
                         Phone *
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="tel"
                         name="phone"
                         required
@@ -447,6 +449,7 @@ export default function Contact() {
                         Email *
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="email"
                         name="email"
                         required
@@ -463,6 +466,7 @@ export default function Contact() {
                         Company
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="text"
                         name="company"
                         value={formData.company}
@@ -479,6 +483,7 @@ export default function Contact() {
                       Service Required *
                     </label>
                     <select
+                      suppressHydrationWarning
                       name="service"
                       required
                       value={formData.service}
@@ -510,6 +515,7 @@ export default function Contact() {
                   </div>
 
                   <button
+                    suppressHydrationWarning
                     type="submit"
                     disabled={isSubmitting}
                     className={`w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2 ${

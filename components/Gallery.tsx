@@ -212,6 +212,7 @@ export default function Gallery() {
             <div className="flex justify-center gap-2 mt-6">
               {ALL_IMAGES.map((_, i) => (
                 <motion.button
+                  suppressHydrationWarning
                   key={i}
                   onClick={() => goTo(i)}
                   className="rounded-full outline-none"
@@ -230,11 +231,13 @@ export default function Gallery() {
             {/* Arrows */}
             <div className="flex justify-center gap-4 mt-5">
               <motion.button
+                suppressHydrationWarning
                 whileHover={{ scale: 1.1, x: -3 }} whileTap={{ scale: .93 }} transition={CARD_SPRING}
                 onClick={() => goTo((center - 1 + TOTAL) % TOTAL)}
                 className="w-11 h-11 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white text-lg hover:bg-blue-500/25 transition-colors"
               >←</motion.button>
               <motion.button
+                suppressHydrationWarning
                 whileHover={{ scale: 1.1, x: 3 }} whileTap={{ scale: .93 }} transition={CARD_SPRING}
                 onClick={() => goTo((center + 1) % TOTAL)}
                 className="w-11 h-11 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white text-lg hover:bg-blue-500/25 transition-colors"
@@ -246,6 +249,7 @@ export default function Gallery() {
         {/* See All / Back */}
         <div className="flex justify-center mt-10">
           <motion.button
+            suppressHydrationWarning
             whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(59,130,246,.3)' }}
             whileTap={{ scale: .97 }}
             onClick={() => setShowAll(v => !v)}
@@ -328,17 +332,17 @@ export default function Gallery() {
                 {ALL_IMAGES[lightbox].caption}
               </div>
 
-              <motion.button whileHover={{ scale: 1.12, x: -3 }} whileTap={{ scale: .92 }} transition={CARD_SPRING}
+              <motion.button suppressHydrationWarning whileHover={{ scale: 1.12, x: -3 }} whileTap={{ scale: .92 }} transition={CARD_SPRING}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 w-11 h-11 rounded-full bg-white/10 backdrop-blur text-white text-lg flex items-center justify-center hover:bg-blue-500/42 transition-colors"
                 onClick={() => setLightbox((lightbox - 1 + TOTAL) % TOTAL)}
               >←</motion.button>
 
-              <motion.button whileHover={{ scale: 1.12, x: 3 }} whileTap={{ scale: .92 }} transition={CARD_SPRING}
+              <motion.button suppressHydrationWarning whileHover={{ scale: 1.12, x: 3 }} whileTap={{ scale: .92 }} transition={CARD_SPRING}
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 w-11 h-11 rounded-full bg-white/10 backdrop-blur text-white text-lg flex items-center justify-center hover:bg-blue-500/42 transition-colors"
                 onClick={() => setLightbox((lightbox + 1) % TOTAL)}
               >→</motion.button>
 
-              <motion.button whileHover={{ scale: 1.15, rotate: 90 }} whileTap={{ scale: .9 }} transition={CARD_SPRING}
+              <motion.button suppressHydrationWarning whileHover={{ scale: 1.15, rotate: 90 }} whileTap={{ scale: .9 }} transition={CARD_SPRING}
                 className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-red-500/80 text-white text-sm font-bold flex items-center justify-center hover:bg-red-500 shadow-xl"
                 onClick={() => setLightbox(null)}
               >✕</motion.button>

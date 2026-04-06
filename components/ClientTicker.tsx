@@ -13,23 +13,27 @@ export default function ClientTicker() {
     { name: "DLF",         logo: "/logos/dlf.jpeg" },
     { name: "Lanco",       logo: "/logos/lanco.jpeg" },
     { name: "Schenker",    logo: "/logos/schenker1.jpeg" },
-    { name: "ONGC",        logo: "/logos/ongc.jpeg" },
-    { name: "GAIL",        logo: "/logos/gail.jpeg" },
+    // { name: "ONGC",        logo: "/logos/ongc.jpeg" },
+    // { name: "GAIL",        logo: "/logos/gail.jpeg" },
     { name: "Indian Oil",  logo: "/logos/indianoil.jpeg" },
-    { name: "Tatsuno",     logo: "/logos/tatsuno.jpeg" },
+    // { name: "Tatsuno",     logo: "/logos/tatsuno.jpeg" },
     { name: "CCC",         logo: "/logos/ccc.jpeg" },
     { name: "Fly Jac",     logo: "/logos/flyjac.jpeg" },
     { name: "Cognizant",   logo: "/logos/cog.jpeg" },
   ];
 
-  const duplicated = [...clients, ...clients];
+  // Triplicate so the loop is never visible
+  const tripled = [...clients, ...clients, ...clients];
 
   return (
     <>
       <style jsx>{`
+        /* Each logo card is 164px wide (140 + 24 padding each side) */
+        /* 18 logos × 164px = 2952px for one set */
+        /* We animate exactly -2952px (one full set) then reset — seamless */
         @keyframes ticker-scroll {
           0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(calc(-164px * 18)); }
         }
 
         .ticker-section {
@@ -72,7 +76,6 @@ export default function ClientTicker() {
           padding: 10px 0 14px;
         }
 
-        /* fades match the bg exactly */
         .fade-left, .fade-right {
           position: absolute;
           top: 0; height: 100%;
@@ -83,63 +86,66 @@ export default function ClientTicker() {
         .fade-left  { left:  0; background: linear-gradient(90deg,  #f8fafc 20%, transparent); }
         .fade-right { right: 0; background: linear-gradient(270deg, #f8fafc 20%, transparent); }
 
-        /* faster — 25s */
         .ticker-track {
           display: flex;
           align-items: center;
-          animation: ticker-scroll 25s linear infinite;
+          /* 
+            Duration = (164px × 18 logos) / speed
+            Using 45s gives a smooth, readable pace for all 18 logos
+          */
+          animation: ticker-scroll 45s linear infinite;
           will-change: transform;
+          width: max-content;
+        }
+
+        .ticker-track:hover {
+          animation-play-state: paused;
         }
 
         .ticker-item {
           flex-shrink: 0;
           display: flex;
           align-items: center;
-          padding: 0 24px;
-          gap: 24px;
+          width: 164px;
+          justify-content: center;
+          gap: 0;
         }
 
-        /* no border, no radius, no shadow — blends into bg */
         .logo-card {
-          width: 140px;
+          width: 120px;
           height: 52px;
           background: #f8fafc;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px 12px;
+          padding: 8px 10px;
           overflow: hidden;
           flex-shrink: 0;
         }
 
         .logo-card img {
-          max-width: 112px;
+          max-width: 100px;
           max-height: 36px;
           width: auto;
           height: auto;
           object-fit: contain;
           display: block;
-          filter: grayscale(15%) opacity(0.9);
+          filter: grayscale(15%) opacity(0.85);
           transition: filter 0.25s, transform 0.25s;
         }
 
-        .logo-card:hover img {
+        .ticker-track:hover .logo-card img {
           filter: grayscale(0%) opacity(1);
-          transform: scale(1.05);
         }
 
-        /* thin vertical divider */
         .sep {
           width: 1px;
           height: 28px;
           background: #e2e8f0;
           flex-shrink: 0;
+          margin-left: 22px;
         }
 
-        /* badge */
         .badge-wrap {
           position: absolute;
           left: 20px;
@@ -188,10 +194,10 @@ export default function ClientTicker() {
           </div>
 
           <div className="ticker-track">
-            {duplicated.map((client, i) => (
+            {tripled.map((client, i) => (
               <div key={i} className="ticker-item">
                 <div className="logo-card">
-                  <img src={client.logo} alt={client.name} />
+                  <img src={client.logo} alt={client.name} loading="lazy" />
                 </div>
                 <div className="sep" />
               </div>

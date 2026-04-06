@@ -156,6 +156,7 @@ export default function Projects() {
             <div className="flex bg-white/5 backdrop-blur-md p-1 rounded-xl border border-white/10 gap-1">
               {tabs.map((tab) => (
                 <motion.button
+                  suppressHydrationWarning
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key as typeof activeTab)}
                   className={`relative flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
