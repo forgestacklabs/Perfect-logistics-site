@@ -5,22 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 const ALL_IMAGES = [
-  { id: 1,  src: "/images/image1.jpeg",  caption: "Tank Cleaning Operation" },
-  { id: 2,  src: "/images/image2.jpeg",  caption: "Calibration Services" },
-  { id: 3,  src: "/images/image3.jpeg",  caption: "Pipeline Installation" },
-  { id: 4,  src: "/images/image4.jpeg",  caption: "HSSE Compliance Check" },
-  { id: 5,  src: "/images/image5.jpeg",  caption: "Petrol Station O&M" },
-  { id: 6,  src: "/images/image6.jpeg",  caption: "Underground Tank Work" },
-  { id: 7,  src: "/images/image7.jpeg",  caption: "Mechanical Works" },
-  { id: 8,  src: "/images/image8.jpeg",  caption: "Electrical Installation" },
-  { id: 9,  src: "/images/image9.jpeg",  caption: "Safety Inspection" },
-  { id: 10, src: "/images/image10.jpeg", caption: "Field Operations" },
-  { id: 11, src: "/images/image11.jpeg", caption: "Site Survey" },
-  { id: 12, src: "/images/image12.jpeg", caption: "Team at Work" },
-  { id: 13, src: "/images/image13.jpeg", caption: "Operations" },
-  { id: 14, src: "/images/image14.jpeg", caption: "Site Work" },
-  { id: 15, src: "/images/image15.jpeg", caption: "Field Team" },
-  { id: 16, src: "/images/image16.jpeg", caption: "Project Execution" },
+  { id: 1,  src: "/images/image1.jpeg",  /* caption: "Tank Cleaning Operation" */ },
+  { id: 2,  src: "/images/image2.jpeg",  /* caption: "Calibration Services" */ },
+  { id: 3,  src: "/images/image3.jpeg",  /* caption: "Pipeline Installation" */ },
+  { id: 4,  src: "/images/image4.jpeg",  /* caption: "HSSE Compliance Check" */ },
+  { id: 5,  src: "/images/image5.jpeg",  /* caption: "Petrol Station O&M" */ },
+  { id: 6,  src: "/images/image6.jpeg",  /* caption: "Underground Tank Work" */ },
+  { id: 7,  src: "/images/image7.jpeg",  /* caption: "Mechanical Works" */ },
+  { id: 8,  src: "/images/image8.jpeg",  /* caption: "Electrical Installation" */ },
+  { id: 9,  src: "/images/image9.jpeg",  /* caption: "Safety Inspection" */ },
+  { id: 10, src: "/images/image10.jpeg", /* caption: "Field Operations" */ },
+  { id: 11, src: "/images/image11.jpeg", /* caption: "Site Survey" */ },
+  { id: 12, src: "/images/image12.jpeg", /* caption: "Team at Work" */ },
+  { id: 13, src: "/images/image13.jpeg", /* caption: "Operations" */ },
+  { id: 14, src: "/images/image14.jpeg", /* caption: "Site Work" */ },
+  { id: 15, src: "/images/image15.jpeg", /* caption: "Field Team" */ },
+  { id: 16, src: "/images/image16.jpeg", /* caption: "Project Execution" */ },
 ];
 
 const TOTAL = ALL_IMAGES.length;
@@ -149,10 +149,9 @@ export default function Gallery() {
                           : '0 8px 32px rgba(0,0,0,.4)',
                       }}
                     >
-                      {/* ✅ next/image with fill — this is why lightbox worked but card didn't */}
                       <Image
                         src={image.src}
-                        alt={image.caption}
+                        alt={/* image.caption */ "Gallery Image"}
                         fill
                         sizes="(max-width: 768px) 200px, 310px"
                         className="object-cover"
@@ -168,14 +167,14 @@ export default function Gallery() {
                           transition={{ duration: .55, ease: 'easeOut' }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-4">
-                            <motion.p
+                            {/* <motion.p
                               className="text-white font-semibold text-sm tracking-wide"
                               initial={{ y: 12, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ delay: .18, duration: .45, ease: 'easeOut' }}
                             >
                               {image.caption}
-                            </motion.p>
+                            </motion.p> */}
                             <motion.div
                               className="mt-1.5 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-full"
                               initial={{ scaleX: 0 }}
@@ -284,13 +283,13 @@ export default function Gallery() {
                 >
                   <Image
                     src={image.src}
-                    alt={image.caption}
+                    alt={/* image.caption */ "Gallery Image"}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/68 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3">
-                    <p className="text-white text-xs font-semibold tracking-wide">{image.caption}</p>
+                    {/* <p className="text-white text-xs font-semibold tracking-wide">{image.caption}</p> */}
                   </div>
                   <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-500/75 backdrop-blur rounded-lg px-2 py-0.5">
                     <span className="text-white text-xs">🔍</span>
@@ -322,15 +321,15 @@ export default function Gallery() {
               <div className="relative w-full" style={{ height: '80vh' }}>
                 <Image
                   src={ALL_IMAGES[lightbox].src}
-                  alt={ALL_IMAGES[lightbox].caption}
+                  alt={/* ALL_IMAGES[lightbox].caption */ "Gallery Image"}
                   fill
                   className="object-contain rounded-2xl"
                   sizes="100vw"
                 />
               </div>
-              <div className="mt-4 text-center text-white/90 font-semibold text-lg tracking-wide">
+              {/* <div className="mt-4 text-center text-white/90 font-semibold text-lg tracking-wide">
                 {ALL_IMAGES[lightbox].caption}
-              </div>
+              </div> */}
 
               <motion.button suppressHydrationWarning whileHover={{ scale: 1.12, x: -3 }} whileTap={{ scale: .92 }} transition={CARD_SPRING}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 w-11 h-11 rounded-full bg-white/10 backdrop-blur text-white text-lg flex items-center justify-center hover:bg-blue-500/42 transition-colors"
