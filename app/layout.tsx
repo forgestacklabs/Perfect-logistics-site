@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     default: "Perfect Logistics | Petro-Logistics & Industrial Services India",
     template: "%s | Perfect Logistics",
   },
+
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+    shortcut: '/logo.png',
+  },
+
   description:
     "Perfect Logistics — India's trusted petro-logistics company since 2000. Specializing in HSD/MS tank cleaning, pipeline installation, PESO calibration, O&M services & warehouse management. Serving BPCL, Shell, ONGC, TCS, Airtel & more across India.",
 
@@ -68,7 +75,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // ── Verification (add your actual codes when available) ──────
+  // ── Verification ─────────────────────────────────────────────
   verification: {
     google: '89557c809b3377e9',
     // yandex: 'your-yandex-code',
@@ -209,12 +216,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Favicon set */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#1d4ed8" />
 
@@ -223,6 +224,9 @@ export default function RootLayout({
         <meta name="geo.placename" content="Mangalore, Karnataka, India" />
         <meta name="geo.position" content="12.9141;74.856" />
         <meta name="ICBM" content="12.9141, 74.856" />
+
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body suppressHydrationWarning className="bg-secondary text-dark">
         <script
