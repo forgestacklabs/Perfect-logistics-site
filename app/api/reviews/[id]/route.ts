@@ -1,10 +1,8 @@
 import { supabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ADMIN_SECRET = 'perfectlogistics123';
-
 function isAuthorized(req: NextRequest) {
-  return req.headers.get('x-admin-secret') === ADMIN_SECRET;
+  return req.headers.get('x-admin-secret') === process.env.ADMIN_SECRET;
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
