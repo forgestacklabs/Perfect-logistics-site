@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 
-const ADMIN_SECRET = 'perfectlogistics123';
+const ADMIN_SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET || '';
 
 interface Review {
   id: string;
