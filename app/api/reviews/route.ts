@@ -16,11 +16,25 @@ export async function GET() {
 // POST — submit a new review
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { name, company, designation, rating, message } = body;
+  let { name, company, designation, message } = body;
+  const { rating } = body;
 
-  if (!name || !company || !designation || !rating || !message) {
-    return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+  // Type and length validation
+  if (
+    typeof name !== 'string' || !name.trim() || name.length > 100 ||
+    typeof company !== 'string' || !company.trim() || company.length > 100 ||
+    typeof designation !== 'string' || !designation.trim() || designation.length > 100 ||
+    typeof message !== 'string' || !message.trim() || message.length > 1000 ||
+    typeof rating !== 'number' || !Number.isInteger(rating) || rating < 1 || rating > 5
+  ) {
+    return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
   }
+
+  // Trim inputs
+  name = name.trim();
+  company = company.trim();
+  designation = designation.trim();
+  message = message.trim();
 
   const { data, error } = await supabaseAdmin
     .from('reviews')
