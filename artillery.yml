@@ -1,0 +1,31 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up the API"
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp up load"
+    - duration: 120
+      arrivalRate: 50
+      name: "Sustained peak load"
+  plugins:
+    metrics-by-endpoint: {}
+
+scenarios:
+  - name: "Fetch reviews"
+    flow:
+      - get:
+          url: "/api/reviews"
+  - name: "Submit a review (expected to hit rate limit or fail auth for fake data)"
+    flow:
+      - post:
+          url: "/api/reviews"
+          json:
+            name: "Load Test User"
+            company: "Artillery"
+            designation: "Bot"
+            rating: 5
+            message: "This is an automated load test review."

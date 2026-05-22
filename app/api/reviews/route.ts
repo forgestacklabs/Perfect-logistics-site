@@ -1,8 +1,21 @@
 import { supabase, supabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/rate-limit';
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
 
 // GET — fetch all approved reviews
-export async function GET() {
+export async function GET(req: NextRequest) {
+  try {
+    const ip = req.headers.get('x-forwarded-for') || 'anonymous';
+    await limiter.check(100, ip); // 100 requests per minute per IP
+  } catch {
+    return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+  }
+
   const { data, error } = await supabase
     .from('reviews')
     .select('*')
@@ -15,6 +28,13 @@ export async function GET() {
 
 // POST — submit a new review
 export async function POST(req: NextRequest) {
+  try {
+    const ip = req.headers.get('x-forwarded-for') || 'anonymous';
+    await limiter.check(10, ip); // 10 requests per minute per IP
+  } catch {
+    return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+  }
+
   const body = await req.json();
   let { name, company, designation, message } = body;
   const { rating } = body;
