@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 interface Review {
   id: number;
@@ -83,8 +83,25 @@ useEffect(() => {
     }
   };
 
-  const averageRating = reviews.filter(r => r.approved).reduce((acc, r) => acc + r.rating, 0) / (reviews.filter(r => r.approved).length || 1);
-  const approvedReviews = reviews.filter(r => r.approved);
+  const { approvedReviews, averageRating } = useMemo(() => {
+    let sum = 0;
+    let count = 0;
+    const approved: Review[] = [];
+
+    for (let i = 0; i < reviews.length; i++) {
+      const r = reviews[i];
+      if (r.approved) {
+        approved.push(r);
+        sum += r.rating;
+        count++;
+      }
+    }
+
+    return {
+      approvedReviews: approved,
+      averageRating: sum / (count || 1)
+    };
+  }, [reviews]);
 
   return (
     <>
@@ -191,7 +208,7 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">"{review.message}"</p>
+                <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">&quot;{review.message}&quot;</p>
 
                 <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
