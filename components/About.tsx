@@ -8,32 +8,40 @@ export default function AboutUs() {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    const elementToKey = new Map<Element, string>();
+    const elementsToObserve: Element[] = [];
 
     Object.keys(sectionRefs.current).forEach((key) => {
       const element = sectionRefs.current[key];
-      if (!element) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setVisibleSections((prev) => new Set(prev).add(key));
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-          rootMargin: '0px 0px -100px 0px'
-        }
-      );
-
-      observer.observe(element);
-      observers.push(observer);
+      if (element) {
+        elementToKey.set(element, key);
+        elementsToObserve.push(element);
+      }
     });
 
+    if (elementsToObserve.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const key = elementToKey.get(entry.target);
+            if (key) {
+              setVisibleSections((prev) => new Set(prev).add(key));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    elementsToObserve.forEach((element) => observer.observe(element));
+
     return () => {
-      observers.forEach((observer) => observer.disconnect());
+      observer.disconnect();
     };
   }, [activeTab]);
 
