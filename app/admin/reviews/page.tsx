@@ -55,8 +55,13 @@ export default function AdminReviews() {
     setActionLoading(null);
   };
 
-  const pending = reviews.filter(r => !r.approved);
-  const approved = reviews.filter(r => r.approved);
+  const [pending, approved] = reviews.reduce<[Review[], Review[]]>(
+    (acc, r) => {
+      acc[r.approved ? 1 : 0].push(r);
+      return acc;
+    },
+    [[], []]
+  );
   const displayed = activeTab === 'pending' ? pending : approved;
 
   const StarRating = ({ rating }: { rating: number }) => (
