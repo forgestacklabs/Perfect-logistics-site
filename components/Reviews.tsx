@@ -41,18 +41,29 @@ useEffect(() => {
 }, []);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    const elementToKey = new Map();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const key = elementToKey.get(e.target);
+            if (key) setVisibleSections((p) => new Set(p).add(key));
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+    );
+
     Object.keys(sectionRefs.current).forEach((key) => {
       const element = sectionRefs.current[key];
-      if (!element) return;
-      const observer = new IntersectionObserver(
-        (entries) => entries.forEach((e) => { if (e.isIntersecting) setVisibleSections((p) => new Set(p).add(key)); }),
-        { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-      );
-      observer.observe(element);
-      observers.push(observer);
+      if (element) {
+        elementToKey.set(element, key);
+        observer.observe(element);
+      }
     });
-    return () => observers.forEach((o) => o.disconnect());
+
+    return () => observer.disconnect();
   }, [showForm]);
 
   const validate = () => {
