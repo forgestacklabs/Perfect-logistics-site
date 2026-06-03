@@ -1,10 +1,14 @@
 import { supabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ADMIN_SECRET = 'perfectlogistics123';
-
 function isAuthorized(req: NextRequest) {
-  return req.headers.get('x-admin-secret') === ADMIN_SECRET;
+  const secret = process.env.ADMIN_SECRET;
+  if (!secret) return false;
+
+  const hasHeader = req.headers.get('x-admin-secret') === secret;
+  const hasCookie = req.cookies.get('admin_token')?.value === secret;
+
+  return hasHeader || hasCookie;
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {

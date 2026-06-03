@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
 
-const ADMIN_SECRET = 'perfectlogistics123';
-
 interface Review {
   id: string;
   name: string;
@@ -15,43 +13,86 @@ interface Review {
 }
 
 export default function AdminReviews() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'pending' | 'approved'>('pending');
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch('/api/admin/reviews', {
-      headers: { 'x-admin-secret': ADMIN_SECRET }
-    })
-      .then(r => r.json())
+  const fetchReviews = () => {
+    fetch('/api/admin/reviews')
+      .then(async r => {
+        if (!r.ok) {
+          if (r.status === 401) {
+            setIsAuthenticated(false);
+          }
+          throw new Error('Failed to fetch');
+        }
+        return r.json();
+      })
       .then(data => {
         setReviews(Array.isArray(data) ? data : []);
+        setIsAuthenticated(true);
         setLoading(false);
       })
       .catch(() => {
-        setReviews([]);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchReviews();
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      if (res.ok) {
+        setIsAuthenticated(true);
+        setLoading(true);
+        fetchReviews();
+      } else {
+        setLoginError('Invalid password');
+      }
+    } catch {
+      setLoginError('Login failed');
+    }
+  };
 
   const approve = async (id: string) => {
     setActionLoading(id + '_approve');
-    await fetch(`/api/reviews/${id}`, {
-      method: 'PATCH',
-      headers: { 'x-admin-secret': ADMIN_SECRET }
+    const res = await fetch(`/api/reviews/${id}`, {
+      method: 'PATCH'
     });
-    setReviews(prev => prev.map(r => r.id === id ? { ...r, approved: true } : r));
+    if (res.ok) {
+      setReviews(prev => prev.map(r => r.id === id ? { ...r, approved: true } : r));
+    } else if (res.status === 401) {
+      setIsAuthenticated(false);
+    }
     setActionLoading(null);
   };
 
   const remove = async (id: string) => {
     setActionLoading(id + '_remove');
-    await fetch(`/api/reviews/${id}`, {
-      method: 'DELETE',
-      headers: { 'x-admin-secret': ADMIN_SECRET }
+    const res = await fetch(`/api/reviews/${id}`, {
+      method: 'DELETE'
     });
-    setReviews(prev => prev.filter(r => r.id !== id));
+    if (res.ok) {
+      setReviews(prev => prev.filter(r => r.id !== id));
+    } else if (res.status === 401) {
+      setIsAuthenticated(false);
+    }
     setActionLoading(null);
   };
 
@@ -83,6 +124,27 @@ export default function AdminReviews() {
       </div>
     </div>
   );
+
+  if (!isAuthenticated && !loading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0d1117', fontFamily: 'DM Sans, sans-serif' }}>
+        <form onSubmit={handleLogin} style={{ background: '#161b22', padding: 32, borderRadius: 12, border: '1px solid #21262d', width: '100%', maxWidth: 360 }}>
+          <h2 style={{ color: '#f0f6fc', margin: '0 0 24px 0', fontSize: 20, textAlign: 'center' }}>Admin Login</h2>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Admin Password"
+            style={{ width: '100%', padding: '10px 14px', borderRadius: 6, border: '1px solid #30363d', background: '#0d1117', color: '#f0f6fc', marginBottom: 16, boxSizing: 'border-box' }}
+          />
+          {loginError && <div style={{ color: '#f85149', fontSize: 13, marginBottom: 16, textAlign: 'center' }}>{loginError}</div>}
+          <button type="submit" style={{ width: '100%', padding: '10px', background: '#238636', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 500, fontSize: 14 }}>
+            Login
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -258,7 +320,7 @@ export default function AdminReviews() {
                     </div>
                   </div>
 
-                  <div className="dk-message">"{r.message}"</div>
+                  <div className="dk-message">&quot;{r.message}&quot;</div>
 
                   <div style={{ display: 'flex', gap: 8 }}>
                     {!r.approved && (
