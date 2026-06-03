@@ -109,9 +109,9 @@ export default function Contact() {
       } else {
         throw new Error(data.message || 'Failed to submit form');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Submission error:', error);
-      setSubmitError(error.message || 'Something went wrong. Please try again.');
+      setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
