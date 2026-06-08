@@ -19,9 +19,13 @@ export const metadata: Metadata = {
     template: "%s | Perfect Logistics",
   },
 
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+   icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
     shortcut: '/logo.png',
   },
 
@@ -213,6 +217,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={inter.className}>
       <head>
         {/* Preconnect for performance */}
+        <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 

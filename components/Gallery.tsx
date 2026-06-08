@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 const ALL_IMAGES = [
-  { id: 1,  src: "/images/image1.jpeg",  /* caption: "Tank Cleaning Operation" */ },
-  { id: 2,  src: "/images/image2.jpeg",  /* caption: "Calibration Services" */ },
-  { id: 3,  src: "/images/image3.jpeg",  /* caption: "Pipeline Installation" */ },
-  { id: 4,  src: "/images/image4.jpeg",  /* caption: "HSSE Compliance Check" */ },
-  { id: 5,  src: "/images/image5.jpeg",  /* caption: "Petrol Station O&M" */ },
+  { id: 1,  src: "/images/rustedpipe.png",   caption: "Rusted Pipe Line Replacement Activity @CTS (CKC) Sholinganallur Chennai"  },
+  { id: 2,  src: "/images/dgtankclean.png",  caption: "DG Day Tank Cleaning @CTS(SEZ) Mepz"  },
+  { id: 3,  src: "/images/curtain.png",   caption: "Air Curtain @CTS ( CREO) Mlr"  },
+  { id: 4,  src: "/images/foodcrusher.png",   caption: "Food Crusher Activity @CTS (CREO) Mlr"  },
+  { id: 5,  src: "/images/pipeline.png",   caption: "Pipe Line Modification Flow meter Installation Activity @HCL (ELCOT) Madurai"  },
   { id: 6,  src: "/images/image6.jpeg",  /* caption: "Underground Tank Work" */ },
   { id: 7,  src: "/images/image7.jpeg",  /* caption: "Mechanical Works" */ },
   { id: 8,  src: "/images/image8.jpeg",  /* caption: "Electrical Installation" */ },
@@ -167,14 +167,14 @@ export default function Gallery() {
                           transition={{ duration: .55, ease: 'easeOut' }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-4">
-                            {/* <motion.p
+                            <motion.p
                               className="text-white font-semibold text-sm tracking-wide"
                               initial={{ y: 12, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ delay: .18, duration: .45, ease: 'easeOut' }}
                             >
                               {image.caption}
-                            </motion.p> */}
+                            </motion.p>
                             <motion.div
                               className="mt-1.5 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-full"
                               initial={{ scaleX: 0 }}
