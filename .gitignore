@@ -39,4 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-"gcm-diagnose.log" 
+
+# git credential manager logs
+gcm-diagnose.log
+*.log
