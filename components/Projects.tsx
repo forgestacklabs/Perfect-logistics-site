@@ -13,24 +13,24 @@ export default function Projects() {
   const bgYSpring = useSpring(bgY, { stiffness: 100, damping: 30 });
 
   const completedProjects = [
-    { id: 'CP001', name: 'BPCL Depot Tank Cleaning – Chennai', scope: 'UG Tank Cleaning & Mechanical Works', year: '2023', client: 'BPCL' },
-    { id: 'CP002', name: 'Indian Oil Gantry Calibration – Coimbatore', scope: 'Overhead Gantry Crane Calibration & PESO Certification', year: '2023', client: 'Indian Oil' },
-    { id: 'CP003', name: 'Shell Petrol Station O&M – Bangalore', scope: 'Full O&M including Dispenser & Electrical Works', year: '2022', client: 'Shell' },
-    { id: 'CP004', name: 'HPCL Pipeline Installation – Hyderabad', scope: 'HSD & Hydrant Pipeline, MS GI SS Material', year: '2022', client: 'HPCL' },
-    { id: 'CP005', name: 'ALDS RO Plant – Pune', scope: 'New RO Plant Installation with Liaison & Documentation', year: '2022', client: 'ALDS' },
-    { id: 'CP006', name: 'IOC UG Tank Evacuation – Mumbai', scope: 'Underground Storage Tank Evacuation & Cleaning', year: '2021', client: 'IOC' },
-    { id: 'CP007', name: 'IT Park Fuel Tank O&M – Chennai', scope: 'DG Set Fuel Tank Maintenance for IT Campus', year: '2021', client: 'IT Co.' },
-    { id: 'CP008', name: 'BPCL Civil Excavation & Tank Farm – Trichy', scope: 'Civil Excavation, Tank Farm Setup, Foundation Works', year: '2021', client: 'BPCL' },
-    { id: 'CP009', name: 'Flow Meter Calibration – Coimbatore', scope: 'Hydro/Electro Magnetic Flow Meters Calibration', year: '2020', client: 'Multiple' },
-    { id: 'CP010', name: 'STP Tank Cleaning & Installation – Bangalore', scope: 'STP Tank Cleaning & RO Plant Integration', year: '2020', client: 'Real Estate' },
+    { id: 'CP001', name: 'UGT Tank Cleaning – NTT Data, Coimbatore', scope: 'Underground Tank Cleaning, Gaskets/Bolts, Product Transfer & Color Coding', year: '2025', client: 'NTT Data / JLL' },
+    { id: 'CP002', name: 'Fire Pipeline Rectification – Cognizant, Chennai', scope: 'MLCP Pump Room Fire Pipeline Rectification at SIPCOT Siruseri IT Park', year: '2025', client: 'CBRE / Cognizant' },
+    { id: 'CP003', name: 'STP & Raw Water Tank Cleaning – Chennai', scope: 'Sewage Treatment Plant & Raw Water Tank Cleaning at Global Infocity Park', year: '2025', client: 'CBRE South Asia' },
+    { id: 'CP004', name: 'HSD UG Tank Cleaning – Cisco, Bangalore', scope: 'HSD Underground Tanks Cleaning and NDT Test at Cessna Business Park SEZ', year: '2025', client: 'JLL / Cisco' },
+    { id: 'CP005', name: 'PESO License Renewal – HCL, Madurai', scope: 'PESO License Renewal via NSWS Portal with Full Statutory Compliance', year: '2025', client: 'HCL Technologies' },
+    { id: 'CP006', name: 'Flow Meter Supply & Installation – HCL, Noida', scope: 'Toshniwal Oval Wheel Flow Meter OV80 AG43 with Strainer & Air Eliminator', year: '2026', client: 'HCL Technologies' },
+    { id: 'CP007', name: 'Fire NOC Inspection & Coordination – HCL, Madurai', scope: 'Consultancy Services for Fire NOC Inspection & License Renewal Coordination', year: '2025', client: 'HCL Technologies' },
+    { id: 'CP008', name: 'HSD Tank Cleaning – CBTPL, Chennai', scope: 'Cleaning, Pressure/Leak Test of 30KL Diesel Tank with Certification', year: '2026', client: 'Chennai Business Tower' },
+    { id: 'CP009', name: 'Electromagnetic Flow Meter – Cognizant, Chennai', scope: 'Supply & Installation of Electromagnetic Flow Meter at STPI Campus', year: '2026', client: 'CBRE / Cognizant' },
+    { id: 'CP010', name: 'DG Fuel Line Repair – NXTRA Data, Chennai', scope: 'Repair & Modification of DG2 & DG3 Fuel Line & Replacement of DG Fuel Tank', year: '2025', client: 'Nxtra Data Ltd' },
   ];
 
   const ongoingProjects = [
-    { id: 'OP001', name: 'BPCL Tank Modernization – Pan India', scope: 'UG Tank Cleaning, Mechanical & Electrical Works across 12 Depots', progress: 65, client: 'BPCL', expected: 'Q3 2025' },
-    { id: 'OP002', name: 'HPCL Gantry Calibration Annual Contract', scope: 'Recurring Calibration & PESO Certification for Gantry Locations', progress: 45, client: 'HPCL', expected: 'Q2 2025' },
-    { id: 'OP003', name: 'Shell O&M Maintenance – South India', scope: 'O&M for 8 Petrol Stations including Electrical, Mechanical & Civil', progress: 80, client: 'Shell', expected: 'Q1 2025' },
-    { id: 'OP004', name: 'IOC Pipeline Replacement – Karnataka', scope: 'HSD Pipeline Replacement, MS GI SS Material Works', progress: 30, client: 'IOC', expected: 'Q4 2025' },
-    { id: 'OP005', name: 'IT Campus Fuel Management – Hyderabad', scope: 'DG Fuel Tank O&M and Annual Maintenance Contract', progress: 55, client: 'IT Co.', expected: 'Ongoing' },
+    { id: 'OP001', name: 'HSD Yard Retrofit – Cognizant, Chennai', scope: 'Complete HSD Yard Retrofit Work at SIPCOT Siruseri IT Park', progress: 40, client: 'CBRE / Cognizant', expected: 'Q3 2026' },
+    { id: 'OP002', name: 'Across Campus Sump & Tank Cleaning – Cognizant', scope: 'Full Campus Sump and Tank Cleaning at SIPCOT Siruseri IT Park, Chennai', progress: 20, client: 'CBRE South Asia', expected: 'Q3 2026' },
+    { id: 'OP003', name: 'HSD Tank Cleaning – CtrlS Datacenters, Noida', scope: 'HSD Tank Cleaning Works for 25KL x 2 Tanks at CtrlS DC Noida', progress: 15, client: 'CtrlS Datacenters', expected: 'Q3 2026' },
+    { id: 'OP004', name: 'PHE & Shell-Tube Heat Exchanger Service – Chennai', scope: 'Servicing of PHE & Shell Tube Heat Exchangers for DG Sets 2,4,5,6,7,8,13,21–23', progress: 30, client: 'CBRE South Asia', expected: 'Q3 2026' },
+    { id: 'OP005', name: 'Bar Screen & Collection Tank Cleaning – HCL, Madurai', scope: 'Bar Screen Chamber Cleaning & Collection Tank Cleaning at ELCOT SEZ', progress: 10, client: 'HCL Technologies', expected: 'Q3 2026' },
   ];
 
   const tabs = [
@@ -39,7 +39,6 @@ export default function Projects() {
     { key: 'ongoing',   label: 'Ongoing',            icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
   ];
 
-  // ── fixed: typed Variants so `variants={itemVariants}` no longer shows red ──
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
@@ -125,11 +124,11 @@ export default function Projects() {
               Two decades of delivering excellence across petro logistics, calibration, and industrial services pan India.
             </motion.p>
 
-            {/* Stats Row — smaller */}
+            {/* Stats Row */}
             <motion.div className="flex justify-center gap-4 mt-5" variants={containerVariants}>
               {[
                 { value: '20+', label: 'Years Experience' },
-                { value: '10+', label: 'Projects Delivered' },
+                { value: '50+', label: 'Projects Delivered' },
                 { value: 'PAN', label: 'India Coverage' },
                 { value: '100%', label: 'HSSE Compliant' },
               ].map((stat, i) => (
